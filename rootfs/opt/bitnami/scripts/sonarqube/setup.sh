@@ -22,17 +22,13 @@ fi
 # Load libraries
 . /opt/bitnami/scripts/libsonarqube.sh
 
-export SONARQUBE_CE_JAVA_ADD_OPTS="-javaagent:./extensions/plugins/sonarqube-community-branch-plugin-1.14.0.jar=ce"
-
-export SONARQUBE_WEB_JAVA_ADD_OPTS="-javaagent:./extensions/plugins/sonarqube-community-branch-plugin-1.14.0.jar=web"
-
 # Ensure SonarQube environment variables are valid
 sonarqube_validate
-
-# Ensure SonarQube is initialized
-sonarqube_initialize
 
 # load plugins
 if [ ! -f "/opt/bitnami/sonarqube/extensions/plugins/init.txt" ]; then
   cp -ar /plugins/* /opt/bitnami/sonarqube/extensions/plugins/
 fi
+
+# Ensure SonarQube is initialized
+sonarqube_initialize

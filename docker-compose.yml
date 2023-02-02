@@ -24,6 +24,7 @@ services:
       - SONARQUBE_DATABASE_PORT_NUMBER=5432
       - SONARQUBE_DATABASE_USER=bn_sonarqube
       - SONARQUBE_DATABASE_NAME=bitnami_sonarqube
+      - BITNAMI_DEBUG=true
 volumes:
   postgresql_data:
     driver: local
