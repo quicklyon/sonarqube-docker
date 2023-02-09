@@ -10,7 +10,7 @@ services:
       - POSTGRESQL_USERNAME=bn_sonarqube
       - POSTGRESQL_DATABASE=bitnami_sonarqube
   sonarqube:
-    image: hub.qucheng.com/app/sonarqube:qc-r1-9.9.0
+    image: hub.qucheng.com/app/sonarqube:qc-r3-9.9.0
     ports:
       - '9000:9000'
     volumes:

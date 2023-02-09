@@ -34,6 +34,13 @@ if [ ! -f "/bitnami/sonarqube/extensions/plugins/init.txt" ]; then
   cp -ar /plugins/* /opt/bitnami/sonarqube/extensions/plugins/
 else
   info "upgrade plugins"
+  for pn in /plugins/*.jar
+  do
+    fullname=$(echo "$pn" | awk -F'plugins/' '{print $2}')
+    version=$(echo "$pn" | awk -F'plugins/' '{print $2}' | awk -F- '{print $NF}')
+    name=$(echo "$fullname" | awk -F"-$version" '{print $1}')
+    rm -rf "/bitnami/sonarqube/extensions/plugins/$name*"
+  done
   cp -ar /plugins/* /bitnami/sonarqube/extensions/plugins/
 fi
 
