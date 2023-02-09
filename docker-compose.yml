@@ -9,10 +9,8 @@ services:
       - ALLOW_EMPTY_PASSWORD=yes
       - POSTGRESQL_USERNAME=bn_sonarqube
       - POSTGRESQL_DATABASE=bitnami_sonarqube
-      - SONARQUBE_USERNAME=admin
-      - SONARQUBE_PASSWORD=bitnami
   sonarqube:
-    image: hub.qucheng.com/app/sonarqube:qc-r0-9.9.0
+    image: hub.qucheng.com/app/sonarqube:qc-r1-9.9.0
     ports:
       - '9000:9000'
     volumes:
@@ -27,6 +25,8 @@ services:
       - SONARQUBE_DATABASE_USER=bn_sonarqube
       - SONARQUBE_DATABASE_NAME=bitnami_sonarqube
       - BITNAMI_DEBUG=true
+      - SONARQUBE_USERNAME=admin
+      - SONARQUBE_PASSWORD=bitnami
 volumes:
   postgresql_data:
     driver: local

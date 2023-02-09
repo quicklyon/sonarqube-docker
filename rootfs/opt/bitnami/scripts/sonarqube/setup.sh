@@ -9,6 +9,9 @@ set -o nounset
 set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
 
+# Load Generic Libraries
+. /opt/bitnami/scripts/liblog.sh
+
 # Load SonarQube environment
 . /opt/bitnami/scripts/sonarqube-env.sh
 
@@ -26,8 +29,12 @@ fi
 sonarqube_validate
 
 # load plugins
-if [ ! -f "/opt/bitnami/sonarqube/extensions/plugins/init.txt" ]; then
+if [ ! -f "/bitnami/sonarqube/extensions/plugins/init.txt" ]; then
+  info "load plugins"
   cp -ar /plugins/* /opt/bitnami/sonarqube/extensions/plugins/
+else
+  info "upgrade plugins"
+  cp -ar /plugins/* /bitnami/sonarqube/extensions/plugins/
 fi
 
 # Ensure SonarQube is initialized
