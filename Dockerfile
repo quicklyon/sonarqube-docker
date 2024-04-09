@@ -1,4 +1,4 @@
-FROM bitnami/sonarqube:9.9.0
+FROM bitnami/sonarqube:9
 
 COPY plugins /plugins
 
