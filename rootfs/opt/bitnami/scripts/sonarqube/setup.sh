@@ -1,6 +1,6 @@
-
-
 #!/bin/bash
+# Copyright VMware, Inc.
+# SPDX-License-Identifier: APACHE-2.0
 
 # shellcheck disable=SC1090,SC1091
 
@@ -8,9 +8,6 @@ set -o errexit
 set -o nounset
 set -o pipefail
 # set -o xtrace # Uncomment this line for debugging purposes
-
-# Load Generic Libraries
-. /opt/bitnami/scripts/liblog.sh
 
 # Load SonarQube environment
 . /opt/bitnami/scripts/sonarqube-env.sh
@@ -31,7 +28,9 @@ sonarqube_validate
 # load plugins
 if [ ! -f "/bitnami/sonarqube/extensions/plugins/init.txt" ]; then
   info "load plugins"
-  cp -ar /plugins/* /opt/bitnami/sonarqube/extensions/plugins/
+  cp -ar /plugins/*.jar /opt/bitnami/sonarqube/extensions/plugins/ && (
+    echo "ok" > /opt/bitnami/sonarqube/extensions/plugins/init.txt
+  )
 else
   info "upgrade plugins"
   for pn in /plugins/*.jar
