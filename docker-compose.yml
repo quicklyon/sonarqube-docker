@@ -11,10 +11,10 @@ services:
       - POSTGRESQL_USERNAME=bn_sonarqube
       - POSTGRESQL_DATABASE=bitnami_sonarqube
   sonarqube:
-    image: hub.qucheng.com/app/sonarqube:10.4.1
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: hub.qucheng.com/app/sonarqube:10.4.1-20240410
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
     restart: always
     ports:
       - '9000:9000'
